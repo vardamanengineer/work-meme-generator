@@ -3,9 +3,10 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "mastra dev",
+    "dev": "npm run kill-ports && mastra dev",
     "build": "mastra build",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "kill-ports": "kill -9 $(lsof -t -i:4111) || true"
   },
   "keywords": [],
   "author": "",
@@ -16,6 +17,7 @@
     "node": ">=20.9.0"
   },
   "dependencies": {
+    "@ai-sdk/anthropic": "^3.0.63",
     "@ai-sdk/openai": "^1.3.22",
     "@mastra/core": "^0.10.1",
     "@mastra/libsql": "^0.10.0",
