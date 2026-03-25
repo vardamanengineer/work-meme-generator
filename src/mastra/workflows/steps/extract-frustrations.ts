@@ -4,9 +4,9 @@ import {generateObject} from 'ai'
 import {createOpenAI} from '@ai-sdk/openai'
 import { frustrationsSchema } from '../schemas'
 
-const openai = createOpenAI({
-    baseURL: process.env.ANTHROPIC_BASE_URL,
-    apiKey: process.env.ANTHROPIC_AUTH_TOKEN,
+const llm = createOpenAI({
+    baseURL: process.env.LLM_BASE_URL,
+    apiKey: process.env.LLM_API_KEY,
 })
 
 const extractFrustrationsOutputSchema = frustrationsSchema.extend({
@@ -25,19 +25,19 @@ export const extractFrustrationsStep = createStep({
     execute: async ({inputData}) => {
         try{
             const result = await generateObject({
-                model: openai('claude-sonnet-4-6'),
+                model: llm('gpt-5-nano'),
                 schema: frustrationsSchema,
                 prompt: `
                     Analyze this workplace frustration and extract structured information:
-                    
+
                     "${inputData.userInput}"
-                    
+
                     Extract:
                     - Individual frustrations with categories
                     - Overall mood
                     - Keywords for each frustration
                     - Suggested meme style
-                    
+
                     Keep analysis concise and focused.
                     `,
             });
