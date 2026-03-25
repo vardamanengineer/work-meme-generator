@@ -25,7 +25,7 @@ export const extractFrustrationsStep = createStep({
     execute: async ({inputData}) => {
         try{
             const result = await generateObject({
-                model: llm('gpt-5-nano'),
+                model: llm('gpt-4.1-mini'),
                 schema: frustrationsSchema,
                 prompt: `
                     Analyze this workplace frustration and extract structured information:

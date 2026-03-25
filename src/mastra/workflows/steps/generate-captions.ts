@@ -23,7 +23,7 @@ export const generateCaptionStep = createStep({
             const mainFrustration = inputData.frustrations.frustrations[0]
             const mood = inputData.frustrations.overallMood
             const result = await generateObject({
-                model: llm('gpt-5-nano'),
+                model: llm('gpt-4.1-mini'),
                 schema: captionsSchema,
                 prompt: `
                 Create meme captions for the "${inputData.baseTemplate.name}" meme template .
